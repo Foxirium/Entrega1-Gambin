@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    Pagina Stalkers
-</body>
-</html>
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block ContentThatChanges %}
+<!--- Todo lo que va a cambiar en la pag stalker --->
+
+
+<h1 class="mx-auto my-0 text-uppercase">Stalker Page</h1>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Register Stalkers</h2>
+
+
+{% endblock %}

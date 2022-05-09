@@ -1,31 +1,48 @@
 from django.db import models
-from django.forms import CharField, DateField, EmailField, IntegerField
 
 # Create your models here.
 
 #Creo clase stalker e importo modelos segun datos a introducir
 class Stalkers(models.Model):
-    name = CharField(max_length=30)
-    surname = CharField(max_length=30)
-    faction = CharField(max_length=30)
-    email = EmailField()
-    dateOfBirth = DateField()
+    
+    name = models.CharField(max_length=30, null=True)
+    surname = models.CharField(max_length=30, null=True)
+    faction = models.CharField(max_length=30, null=True)
+    email = models.EmailField(null=True)
+    dateOfBirth = models.DateField(null=True)
+
+    def __str__(self):
+        return self.name+" "+self.surname+" - "+ self.faction     
+
 
 #Creo clase factions e importo modelos segun datos a introducir
 class Factions(models.Model):
-    fName = CharField(max_length=20)
-    fLeader = CharField(max_length=30)
-    fage = IntegerField()
+    fName = models.CharField(max_length=20, null=True)
+    fFounder = models.CharField(max_length=30, null=True)
+    fage = models.IntegerField(null=True)
+
+    def __str__(self):
+        return self.fName+" - "+ self.fFounder   
 
 #Creo clase artifacts e importo modelos segun datos a introducir
 class Artifacts(models.Model):
-    aName = CharField(max_length=30)
-    aPower = CharField(max_length=30)
-    aDateOfBirth = DateField()
+
+    aName = models.CharField(max_length=30, null=True)
+    aPower = models.CharField(max_length=30, null=True)
+    aDateOfBirth = models.DateField(null=True)
+
+    def __str__(self):
+        return self.aName+" - "+ str(self.aDateOfBirth)
+
 
 #Creo clase levels e importo modelos segun datos a introducir
 class Levels(models.Model):
-    lName = CharField(max_length=30)
-    lstrucamount = IntegerField()
+    lName = models.CharField(max_length=30, null=True)
+    lStructureAmount = models.IntegerField(null=True)
+    lNpcAmount = models.IntegerField(null=True)
+    difficulty = models.CharField(max_length=30, null=True)
+
+    def __str__(self):
+        return self.lName+" - "+ str(self.lNpcAmount)+" - "+ self.difficulty  
 
     

@@ -6,7 +6,28 @@
 <!--- Todo lo que va a cambiar en la pag facciones --->
 
 <h1 class="mx-auto my-0 text-uppercase">Faction Page</h1>
-<h2 class="text-white-50 mx-auto mt-2 mb-5">Register Factions</h2>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">Register Faction</h2>
+
+{% if miFormulario.errors %}
+
+<p style="color: red;"> Estan mal los datos</p>
+
+{% endif %}
+
+
+<form action="" method="POST">{%csrf_token %}
+
+    <table>
+
+        {{ miFormulario.as_table }}
+
+    </table>
+
+    <input type="submit", value="Enviar">
+
+</form>
+
+
 
 
 {% endblock %}

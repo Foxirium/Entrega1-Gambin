@@ -1,45 +1,46 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from appChernobyl.forms import Formulario_Stalkers
+from appChernobyl.forms import Formulario_Stalkers, Formulario_Factions, Formulario_Artifacts
 from appChernobyl.models import *
 from django.http import HttpResponse
 
 
 # Create your views here.
-
+#------------------------------------------------------------------------------------------------------
 def inicio(request):
     return render(request, 'appChernobyl/inicio.html')
 
-def stalkers(request):   
 
-    return render(request, 'appChernobyl/stalkers.html')
+#------------------------------------------------------------------------------------------------------
+#Formulario stalkers
+def stalkers(request):
 
-def formulario_stalkers(request):
 
-
-    if request.method == 'POST':
+    if request.method == 'POST': #Si entra por Post
 
             miFormulario = Formulario_Stalkers(request.POST)
 
 
             if miFormulario.is_valid(): #Si pasa la validacion
                 informacion = miFormulario.cleaned_data
-                stalker = Stalkers (name=informacion['name'], surname=informacion['surname'], email=informacion['email'], faction=informacion['faction'], dateOfBirth=informacion['dateOfBirth'])
+                stalker = Stalkers (name=informacion['Name'], surname=informacion['Surname'], email=informacion['Email'], faction=informacion['Faction'], dateOfBirth=informacion['DateOfBirth']) #modelo=informacion[form]
                 stalker.save()
                 return render(request, 'appChernobyl/inicio.html') #Vuelvo a inicio
 
-    else:
+    else: #Si entra por Get
 
 
             miFormulario = Formulario_Stalkers() #Formulario Vacio
 
-    return render(request, 'appChernobyl/formulario_stalkers.html', {"miFormulario":miFormulario})          
+    return render(request, 'appChernobyl/stalkers.html', {"miFormulario":miFormulario})    
 
+
+#------------------------------------------------------------------------------------------------------
 def busqueda_stalkers(request):
 
     return render(request, "appChernobyl/busqueda_stalkers.html")
 
-
+#------------------------------------------------------------------------------------------------------
 #Funcion para buscar un stalker
 def buscar(request):
 
@@ -49,7 +50,7 @@ def buscar(request):
         name = request.GET['name']
         stalkers = Stalkers.objects.filter(name__icontains=name)
 
-        return render(request, "appChernobyl/resultado_busquedastalkers.html", {"name":name, "stalkers":stalkers})
+        return render(request, "appChernobyl/resultado_busquedastalkers.html", {"name":name, "stalkers":stalkers}) 
 
     else:
 
@@ -60,14 +61,50 @@ def buscar(request):
     return HttpResponse(respuesta)              
   
 
+#------------------------------------------------------------------------------------------------------
 
+#Formulario Facciones
 def factions(request):
-    return render(request, 'appChernobyl/factions.html')
+
+    if request.method == 'POST': #Si entra por Post
+
+            miFormulario = Formulario_Factions(request.POST)
 
 
+            if miFormulario.is_valid(): #Si pasa la validacion
+                informacion = miFormulario.cleaned_data
+                factions = Factions (fName=informacion['Name'], fFounder=informacion['Founder'], fAge=informacion['Age']) #modelo=informacion[form]
+                factions.save()
+                return render(request, 'appChernobyl/inicio.html') #Vuelvo a inicio
+    else: #Si entra por Get
+        miFormulario = Formulario_Factions() #Formulario Vacio
+    return render(request, 'appChernobyl/factions.html', {"miFormulario":miFormulario}) 
+
+   # return render(request, 'appChernobyl/factions.html')
+
+#------------------------------------------------------------------------------------------------------
+
+#Formulario Artefactos
 def artifacts(request):
-    return render(request, 'appChernobyl/artifacts.html')
+
+    if request.method == 'POST': #Si entra por Post
+
+            miFormulario = Formulario_Artifacts(request.POST)
 
 
+            if miFormulario.is_valid(): #Si pasa la validacion
+                informacion = miFormulario.cleaned_data
+                factions = Artifacts (aName=informacion['Name'], aPower=informacion['Power'], aDateOfBirth=informacion['dateOfBirth'])    #modelo=informacion[form]
+                factions.save()
+                return render(request, 'appChernobyl/inicio.html') #Vuelvo a inicio
+
+    else: #Si entra por Get
+
+
+            miFormulario = Formulario_Artifacts() #Formulario Vacio
+
+    return render(request, 'appChernobyl/artifacts.html', {"miFormulario":miFormulario}) 
+
+#------------------------------------------------------------------------------------------------------
 def levels(request):
     return render(request, 'appChernobyl/levels.html')            

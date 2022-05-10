@@ -1,23 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "appChernobyl/inicio.html" %}
+<!--- heredo del padre --->
+
+{% load static %}
+
+{% block ContentThatChanges %}
+
 <body>
     
-
-    <p> Estamos buscando el : {{name}}</p>
 
     {% if stalkers %}
 
     <ul>
     {% for stalker in stalkers %}
 
-        <li> {{stalker.name}}</li>
-        <li> {{stalker.surname}}</li>
+        <li> Name:  {{stalker.name}}    </li>
+        <li> Surname: {{stalker.surname}}   </li>
+        <li> Faction: {{stalker.faction}}   </li>
 
     {% endfor %}
     
@@ -26,6 +24,10 @@
 
     {% endif %}
 
+    <a class="btn" href="{% url 'busqueda_stalkers' %}">Search Another Stalker</a>
+    <p> </p>
+    <a class="btn btn-primary" href="{% url 'inicio' %}">Home Page</a>
+
 </body>
 
-</html>
+{% endblock %}

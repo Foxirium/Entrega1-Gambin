@@ -19,7 +19,7 @@ class Stalkers(models.Model):
 class Factions(models.Model):
     fName = models.CharField(max_length=20, null=True)
     fFounder = models.CharField(max_length=30, null=True)
-    fage = models.IntegerField(null=True)
+    fAge = models.IntegerField(null=True)
 
     def __str__(self):
         return self.fName+" - "+ self.fFounder   
@@ -32,7 +32,7 @@ class Artifacts(models.Model):
     aDateOfBirth = models.DateField(null=True)
 
     def __str__(self):
-        return self.aName+" - "+ str(self.aDateOfBirth)
+        return self.aName+" - "+ str(self.aPower)
 
 
 #Creo clase levels e importo modelos segun datos a introducir

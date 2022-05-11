@@ -5,7 +5,11 @@
 {% block ContentThatChanges %}
 <!--- Todo lo que va a cambiar en la pag levels --->
 <body>
+    {% if buscar.errors %}
 
+    <p style="color: red;"> Estan mal los datos</p>
+    
+    {% endif %}
 
     <h1 class="mx-auto my-0 text-uppercase">Search Page</h1>
 

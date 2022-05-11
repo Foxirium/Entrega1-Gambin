@@ -6,9 +6,12 @@
 {% block ContentThatChanges %}
 
 <body>
-    
+
+    <h2 class="text-white-50 mx-auto mt-2 mb-5">Registered Stalker</h2>
 
     {% if stalkers %}
+
+
 
     <ul>
     {% for stalker in stalkers %}
@@ -19,12 +22,15 @@
 
     {% endfor %}
     
-
     </ul>
+
+    {% else %}
+
+    <p style="color: red;"> No se encontraron stalkers registrados con esos parametros</p>
 
     {% endif %}
 
-    <a class="btn" href="{% url 'busqueda_stalkers' %}">Search Another Stalker</a>
+    <a class="btn btn-secondary" href="{% url 'busqueda_stalkers' %}">Search Another Stalker</a>
     <p> </p>
     <a class="btn btn-primary" href="{% url 'inicio' %}">Home Page</a>
 

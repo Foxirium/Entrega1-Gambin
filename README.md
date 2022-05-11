@@ -4,7 +4,10 @@
 
 Guia:
 
+<p>- Asegurar que la branch se "trabajofinal1" es el terminado
+
 <p>- Descagar los archivos del repositorio de GitHub --https://github.com/Foxirium/Entrega1-Gambin.git--</p>
+
 
 <p>- Pasar los archivos a una carpeta y abrirlos con Visual Studio Code o similar</p>
 
